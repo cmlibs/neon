@@ -15,6 +15,24 @@
 '''
 
 
-names = ['Ventilation',
-         'Biomeng321Lab1',
-         ]
+class BaseVisualisation(object):
+
+    def __init__(self):
+        self._name = 'Base'
+        self._parameters = {}
+        self._simulation = None
+
+    def getName(self):
+        return self._name
+
+    def setName(self, name):
+        self._name = name
+
+    def setSimulation(self, simulation):
+        self._simulation = simulation
+
+    def setParameters(self, parameters):
+        self._parameters = parameters
+
+    def visualise(self, document):
+        raise NotImplementedError()

@@ -21,6 +21,7 @@ from opencmiss.zinc.context import Context
 from opencmiss.zinc.material import Material
 from opencmiss.neon.core.neonlogger import NeonLogger
 
+
 class NeonDocument(object):
 
     def __init__(self):

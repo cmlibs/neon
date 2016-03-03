@@ -34,6 +34,7 @@ from opencmiss.neon.ui.editors.tessellationeditorwidget import TessellationEdito
 from opencmiss.neon.ui.editors.timeeditorwidget import TimeEditorWidget
 from opencmiss.neon.settings.mainsettings import VERSION_MAJOR
 
+
 class MainWindow(QtGui.QMainWindow):
 
     def __init__(self, model):
@@ -73,14 +74,16 @@ class MainWindow(QtGui.QMainWindow):
         self._registerEditors()
 
         self._setupViews(view_list)
-        
+
         self._setupOtherWindows()
 
         self._registerOtherWindows()
-        
+
         self._addDockWidgets()
 
         self._makeConnections()
+
+        self._problem_view.setCurrentModel(0)
 
         # Set the undo redo stack state
         self._undoRedoStack.push(CommandEmpty())
@@ -114,14 +117,17 @@ class MainWindow(QtGui.QMainWindow):
 
         self._problem_view.runClicked.connect(self._runSimulationClicked)
         self._problem_view.selectionChanged.connect(self._simulation_view.selectionChanged)
-        self._simulation_view.runClicked.connect(self._runSimulationClicked)
+#         self._simulation_view.runClicked.connect(self._runSimulationClicked)
+        self._simulation_view.visualiseClicked.connect(self._visualiseSimulationClicked)
+
+        self._model.documentChanged.connect(self._onDocumentChanged)
 
     def _updateUi(self):
         modified = self._model.isModified()
         self._ui.action_Save.setEnabled(modified)
         recents = self._model.getRecents()
         self._ui.action_Clear.setEnabled(len(recents))
-        
+
     def _addDockWidgets(self):
         self.addDockWidget(QtCore.Qt.DockWidgetArea(QtCore.Qt.LeftDockWidgetArea), self.dockWidgetTessellationEditor)
         self.tabifyDockWidget(self.dockWidgetTessellationEditor, self.dockWidgetSpectrumEditor)
@@ -329,7 +335,7 @@ class MainWindow(QtGui.QMainWindow):
         if action is not None:
             menu = action.menu()
             menu.setEnabled(True)
-            
+
     def _setupOtherWindows(self):
         self.dockWidgetLogger = QtGui.QDockWidget(self)
         self.dockWidgetLogger.setWindowTitle('Logger')
@@ -338,10 +344,10 @@ class MainWindow(QtGui.QMainWindow):
         self.dockWidgetContentsLogger.setObjectName("dockWidgetContentsLogger")
         self.dockWidgetLogger.setWidget(self.dockWidgetContentsLogger)
         self.dockWidgetLogger.setHidden(True)
-        
+
     def _registerOtherWindows(self):
         self._registerOtherWindow(self.dockWidgetLogger)
-    
+
     def _registerOtherWindow(self, editor):
         action = self._getEditorAction("Other Windows")
         if action is None:
@@ -349,8 +355,8 @@ class MainWindow(QtGui.QMainWindow):
             menu.setEnabled(True)
         else:
             menu = action.menu()
-        
-        menu.addAction(editor.toggleViewAction()) 
+
+        menu.addAction(editor.toggleViewAction())
 
     def _setupViews(self, views):
         action_group = QtGui.QActionGroup(self)
@@ -365,7 +371,7 @@ class MainWindow(QtGui.QMainWindow):
             action_view.setActionGroup(action_group)
             action_view.triggered.connect(self._viewTriggered)
             self._ui.menu_View.addAction(action_view)
-            
+
         self._ui.menu_View.addSeparator()
 
     def _runSimulationClicked(self):
@@ -380,6 +386,19 @@ class MainWindow(QtGui.QMainWindow):
             self._simulation_view.setProblem(problem)
             self._simulation_view.setPreferences(self._model.getPreferences())
             self._simulation_view.run()
+        else:
+            print('pop up error box')
+
+    def _visualiseSimulationClicked(self):
+        sender = self.sender()
+        if sender == self._simulation_view:
+            actions = self._ui.menu_View.actions()
+            visualise_action = [a for a in actions if a.text() == self._visualisation_view.getName()][0]
+            visualise_action.activate(QtGui.QAction.ActionEvent.Trigger)
+
+        simulation = self._simulation_view.getSimulation()
+        if simulation.validate():
+            self._model.visualiseSimulation(simulation)
         else:
             print('pop up error box')
 
@@ -400,7 +419,7 @@ class MainWindow(QtGui.QMainWindow):
             zincRootRegion = changedRegion.getZincRegion()
             self._visualisation_view.setScene(zincRootRegion.getScene())
 
-    def _onNewDocument(self):
+    def _onDocumentChanged(self):
         document = self._model.getDocument()
         rootRegion = document.getRootRegion()
         rootRegion.connectRegionChange(self._regionChange)
@@ -430,7 +449,7 @@ class MainWindow(QtGui.QMainWindow):
 
     def _visualisationViewReady(self):
         self._visualisation_view_ready = True
-        self._onNewDocument()
+        self._onDocumentChanged()
 
     def _saveTriggered(self):
         if self._model.getLocation() is None:
@@ -478,13 +497,13 @@ class MainWindow(QtGui.QMainWindow):
 
     def _newTriggered(self):
         self._model.new()
-        self._onNewDocument()
+#         self._onNewDocument()
 
     def _openModel(self, filename):
         self._location = os.path.dirname(filename)
         self._model.load(filename)
         self._addRecent(filename)
-        self._onNewDocument()
+#         self._onNewDocument()
 
         self._updateUi()
 

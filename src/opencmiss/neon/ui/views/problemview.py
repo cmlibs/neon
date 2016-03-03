@@ -16,10 +16,13 @@
 from PySide import QtCore, QtGui
 
 from opencmiss.neon.ui.views.base import BaseView
-from opencmiss.neon.ui.misc.factory import generateRelatedClasses
+from opencmiss.neon.ui.misc.factory import instantiateRelatedClasses
 
 from opencmiss.neon.ui.views.ui_problemview import Ui_ProblemView
 import json
+
+
+BIOMENG321 = False
 
 
 class ProblemView(BaseView):
@@ -41,7 +44,10 @@ class ProblemView(BaseView):
         self._makeConnections()
 
     def _makeConnections(self):
-        self._ui.lineEditFilter.textChanged.connect(self._proxy_model.setFilterFixedString)
+        if BIOMENG321:
+            self._proxy_model.setFilterFixedString('Biomeng')
+        else:
+            self._ui.lineEditFilter.textChanged.connect(self._proxy_model.setFilterFixedString)
         self._ui.pushButtonRun.clicked.connect(self.runClicked)
 
     def _selectionChanged(self, current_index, previous_index):
@@ -50,7 +56,7 @@ class ProblemView(BaseView):
         self.selectionChanged.emit(current_index, previous_index)
 
     def _setupProblems(self, model):
-        classes = generateRelatedClasses(model, 'problems')
+        classes = instantiateRelatedClasses(model, 'problems')
         for c in classes:
             c.setParent(self._ui.stackedWidgetProblemView)
             problem = model.getProblem(self._ui.stackedWidgetProblemView.count())
@@ -60,13 +66,15 @@ class ProblemView(BaseView):
     def setZincContext(self, zincContext):
         pass
 
+    def setCurrentModel(self, index):
+        self._selection_model.setCurrentIndex(self._proxy_model.index(index, 0), QtGui.QItemSelectionModel.Select)
+
     def setModel(self, model):
         self._proxy_model.setSourceModel(model)
         self._ui.listViewProblems.setModel(self._proxy_model)
         self._setupProblems(model)
         self._selection_model = self._ui.listViewProblems.selectionModel()
         self._selection_model.currentChanged.connect(self._selectionChanged)
-        self._selection_model.setCurrentIndex(self._proxy_model.index(0, 0), QtGui.QItemSelectionModel.Select)
 
     def getProblem(self):
         index = self._ui.stackedWidgetProblemView.currentIndex()
@@ -78,6 +86,7 @@ class ProblemView(BaseView):
         for index in range(self._ui.stackedWidgetProblemView.count()):
             w = self._ui.stackedWidgetProblemView.widget(index)
             state[w.getName()] = w.serialise()
+
         return json.dumps(state)
 
     def deserialise(self, string):
@@ -90,6 +99,7 @@ class ProblemView(BaseView):
             saved_current_index = d['current_index'] if 'current_index' in d else 0
             current_index = self._ui.stackedWidgetProblemView.currentIndex()
             if saved_current_index != current_index:
+                self._selection_model.clear()
                 self._selection_model.setCurrentIndex(self._proxy_model.index(saved_current_index, 0), QtGui.QItemSelectionModel.Select)
         except Exception:
             pass
