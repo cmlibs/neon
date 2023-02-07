@@ -17,8 +17,8 @@ import os
 
 from PySide2 import QtCore
 
-from opencmiss.argon.argondocument import ArgonDocument
-from opencmiss.argon.argonlogger import ArgonLogger
+from cmlibs.argon.argondocument import ArgonDocument
+from cmlibs.argon.argonlogger import ArgonLogger
 from opencmiss.neon.core.preferences import Preferences
 from opencmiss.neon.core.misc.neonerror import NeonError
 
