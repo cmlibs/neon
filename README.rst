@@ -1,7 +1,7 @@
 
 
-==============
-OpenCMISS-Neon
-==============
+===========
+CMLibs-Neon
+===========
 
-Visual editing environment for OpenCMISS `opencmiss.org <http://opencmiss.org>`_.
+Visual editing environment for CMLibs `cmlibs.org <https://cmlibs.org/>`_.

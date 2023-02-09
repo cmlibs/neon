@@ -15,7 +15,7 @@
 '''
 from PySide2 import QtGui, QtWidgets
 
-from opencmiss.neon.ui.editors.ui_loggereditorwidget import Ui_LoggerEditorWidget
+from cmlibs.neon.ui.editors.ui_loggereditorwidget import Ui_LoggerEditorWidget
 from cmlibs.argon.argonlogger import CustomStream
 
 

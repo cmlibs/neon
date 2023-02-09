@@ -3,7 +3,7 @@ import os
 import shutil
 import subprocess
 
-MAIN_WINDOW_UI_FILE = 'src/opencmiss/neon/ui/ui_mainwindow.py'
+MAIN_WINDOW_UI_FILE = 'src/cmlibs/neon/ui/ui_mainwindow.py'
 
 
 def remove_parent_of_menubar():
@@ -79,6 +79,6 @@ def main():
     os.chdir(pwd)
     print('Created new Neon application at: ', os.path.join(destination, 'Neon.app'))
 
+
 if __name__ == '__main__':
     main()
-

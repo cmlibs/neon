@@ -17,10 +17,10 @@ import os.path
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from opencmiss.neon.ui.dialogs.aboutdialog import AboutDialog
-from opencmiss.neon.ui.editors.loggereditorwidget import LoggerEditorWidget
-from opencmiss.neon.ui.ui_mainwindow import Ui_MainWindow
-from opencmiss.neon.undoredo.commands import CommandEmpty
+from cmlibs.neon.ui.dialogs.aboutdialog import AboutDialog
+from cmlibs.neon.ui.editors.loggereditorwidget import LoggerEditorWidget
+from cmlibs.neon.ui.ui_mainwindow import Ui_MainWindow
+from cmlibs.neon.undoredo.commands import CommandEmpty
 
 from opencmiss.zincwidgets.addviewwidget import AddView
 from opencmiss.zincwidgets.editabletabbar import EditableTabBar
@@ -551,7 +551,8 @@ class MainWindow(QtWidgets.QMainWindow):
             self._location = os.path.dirname(filename)
             self._addRecent(filename)
         else:
-            QtWidgets.QMessageBox.warning(self, "Load failure", "Failed to load file " + filename + ". Refer to logger window for more details", QtWidgets.QMessageBox.Ok)
+            QtWidgets.QMessageBox.warning(self, "Load failure", "Failed to load file " + filename +
+                                          ". Refer to logger window for more details", QtWidgets.QMessageBox.Ok)
             self._model.new()  # in case document half constructed; emits documentChanged
 
         self._updateUi()

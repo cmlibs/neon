@@ -17,9 +17,9 @@ import sys
 
 from PySide2 import QtWidgets
 
-from opencmiss.neon.core.mainapplication import MainApplication
-from opencmiss.neon.ui.mainwindow import MainWindow
-from opencmiss.neon.settings.mainsettings import setApplicationSettings
+from cmlibs.neon.core.mainapplication import MainApplication
+from cmlibs.neon.ui.mainwindow import MainWindow
+from cmlibs.neon.settings.mainsettings import setApplicationSettings
 
 
 def main():

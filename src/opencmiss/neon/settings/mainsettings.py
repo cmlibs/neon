@@ -26,8 +26,8 @@ VERSION_STRING = str(VERSION_MAJOR) + "." + str(VERSION_MINOR) + "." + str(VERSI
 VERSION_LIST = [VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH]
 
 APPLICATION_NAME = 'Neon'
-ORGANISATION_NAME = 'OpenCMISS'
-ORGANISATION_DOMAIN = 'opencmiss.org'
+ORGANISATION_NAME = 'CMLibs'
+ORGANISATION_DOMAIN = 'cmlibs.org'
 
 EXTERNAL_BINARIES_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'bin'))
 EXTERNAL_DATA_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'data'))

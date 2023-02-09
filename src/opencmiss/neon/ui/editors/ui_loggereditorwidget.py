@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'loggereditorwidget.ui'
+# Form generated from reading UI file 'loggereditorwidget.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+# Created by: Qt User Interface Compiler version 5.15.2
 ##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
+# WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-import icons_rc
 
 class Ui_LoggerEditorWidget(object):
     def setupUi(self, LoggerEditorWidget):
@@ -42,9 +41,7 @@ class Ui_LoggerEditorWidget(object):
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
-
 
         self.retranslateUi(LoggerEditorWidget)
         self.clearAllButton.clicked.connect(LoggerEditorWidget.clearAll)
@@ -58,4 +55,3 @@ class Ui_LoggerEditorWidget(object):
         self.clearAllButton.setText(QCoreApplication.translate("LoggerEditorWidget", u"Clear All", None))
         self.copyButton.setText(QCoreApplication.translate("LoggerEditorWidget", u"Copy To Clipboard", None))
     # retranslateUi
-

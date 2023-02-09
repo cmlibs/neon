@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'aboutdialog.ui'
+# Form generated from reading UI file 'aboutdialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+# Created by: Qt User Interface Compiler version 5.15.2
 ##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
+# WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide2.QtCore import *
@@ -38,11 +38,10 @@ class Ui_AboutDialog(object):
 
         self.label_2 = QLabel(self.frame)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.label_2.setAlignment(Qt.AlignLeading | Qt.AlignLeft | Qt.AlignTop)
         self.label_2.setWordWrap(True)
 
         self.verticalLayout_2.addWidget(self.label_2)
-
 
         self.verticalLayout.addWidget(self.frame)
 
@@ -53,7 +52,6 @@ class Ui_AboutDialog(object):
 
         self.verticalLayout.addWidget(self.buttonBox)
 
-
         self.retranslateUi(AboutDialog)
         self.buttonBox.accepted.connect(AboutDialog.accept)
         self.buttonBox.rejected.connect(AboutDialog.reject)
@@ -63,7 +61,6 @@ class Ui_AboutDialog(object):
 
     def retranslateUi(self, AboutDialog):
         AboutDialog.setWindowTitle(QCoreApplication.translate("AboutDialog", u"About", None))
-        self.label.setText(QCoreApplication.translate("AboutDialog", u"OpenCMISS-Neon", None))
-        self.label_2.setText(QCoreApplication.translate("AboutDialog", u"Visual editing environment for OpenCMISS [http://opencmiss.org]].", None))
+        self.label.setText(QCoreApplication.translate("AboutDialog", u"CMLibs-Neon", None))
+        self.label_2.setText(QCoreApplication.translate("AboutDialog", u"Visual editing environment for CMLibs [http://cmlibs.org]].", None))
     # retranslateUi
-

@@ -13,7 +13,7 @@ import py2exe
 
 def which(name, flags=os.X_OK):
     """Search PATH for executable files with the given name.
-    
+
     On newer versions of MS-Windows, the PATHEXT environment variable will be
     set to the list of file extensions for files considered executable. This
     will normally include things like ".EXE". This fuction will also find files
@@ -21,13 +21,13 @@ def which(name, flags=os.X_OK):
 
     On MS-Windows the only flag that has any meaning is os.F_OK. Any other
     flags will be ignored.
-    
+
     @type name: C{str}
     @param name: The name for which to search.
-    
+
     @type flags: C{int}
     @param flags: Arguments to L{os.access}.
-    
+
     @rtype: C{list}
     @param: A list of the full paths to files found, in the
     order in which they were found.
@@ -37,7 +37,7 @@ def which(name, flags=os.X_OK):
     path = os.environ.get('PATH', None)
     if path is None:
         return result
-    
+
     for p in os.environ.get('PATH', '').split(os.pathsep):
         p = os.path.join(p, name)
         if os.access(p, flags):
@@ -48,6 +48,7 @@ def which(name, flags=os.X_OK):
                 result.append(pext)
     return result
 
+
 # Assuming that we are using the mkl libraries from intel
 mkl_core = which('mkl_core.dll')
 mkl_avx = which('mkl_avx.dll')
@@ -57,22 +58,22 @@ mkl_def = which('mkl_def.dll')
 mpich2nemesis = which('mpich2nemesis.dll')
 additional_dlls = [dll[0] for dll in [mkl_core, mkl_avx, mkl_def, mpich2nemesis] if dll]
 
-APP = ['opencmiss/neon/neon.py']
-DATA_FILES = [('bin', [os.path.join('..', 'bin', 'ventilation-' + sys.platform + '.exe')]), 
-    (os.path.join('data', 'Ventilation', 'Geom'), [os.path.join('..', 'data', 'Ventilation', 'Geom', 'tree.ipelem'), os.path.join('..', 'data', 'Ventilation', 'Geom', 'tree.ipnode'), os.path.join('..', 'data', 'Ventilation', 'Geom', 'tree.ipfiel')]),
-    ('.', additional_dlls),
-]
+APP = ['cmlibs/neon/neon.py']
+DATA_FILES = [('bin', [os.path.join('..', 'bin', 'ventilation-' + sys.platform + '.exe')]),
+              (os.path.join('data', 'Ventilation', 'Geom'), [os.path.join('..', 'data', 'Ventilation', 'Geom', 'tree.ipelem'), os.path.join(
+                  '..', 'data', 'Ventilation', 'Geom', 'tree.ipnode'), os.path.join('..', 'data', 'Ventilation', 'Geom', 'tree.ipfiel')]),
+              ('.', additional_dlls),
+              ]
 OPTIONS = {'py2exe': {
-        'packages': find_packages(),
-        #'skip_archive': True,
-        #'bundle_files': 2, # Unfortunately we cannot use anything other than 3 at this point in time
-    }
+    'packages': find_packages(),
+    # 'skip_archive': True,
+    # 'bundle_files': 2, # Unfortunately we cannot use anything other than 3 at this point in time
+}
 }
 
 
 setup(
-    windows=['opencmiss/neon/neon.py'],
+    windows=['cmlibs/neon/neon.py'],
     options=OPTIONS,
     data_files=DATA_FILES,
 )
-

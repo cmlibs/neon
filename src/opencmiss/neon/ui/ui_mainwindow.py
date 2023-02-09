@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainwindow.ui'
+# Form generated from reading UI file 'mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+# Created by: Qt User Interface Compiler version 5.15.2
 ##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
+# WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
 from PySide2.QtCore import *
 from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
-import icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -164,28 +163,28 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Neon", None))
         self.action_Open.setText(QCoreApplication.translate("MainWindow", u"&Open", None))
-#if QT_CONFIG(shortcut)
+# if QT_CONFIG(shortcut)
         self.action_Open.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+O", None))
 #endif // QT_CONFIG(shortcut)
         self.action_Save.setText(QCoreApplication.translate("MainWindow", u"&Save", None))
-#if QT_CONFIG(shortcut)
+# if QT_CONFIG(shortcut)
         self.action_Save.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+S", None))
 #endif // QT_CONFIG(shortcut)
         self.action_Clear.setText(QCoreApplication.translate("MainWindow", u"&Clear", None))
         self.action_Quit.setText(QCoreApplication.translate("MainWindow", u"&Quit", None))
-#if QT_CONFIG(shortcut)
+# if QT_CONFIG(shortcut)
         self.action_Quit.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Q", None))
 #endif // QT_CONFIG(shortcut)
         self.action_Snapshot.setText(QCoreApplication.translate("MainWindow", u"Sna&pshot", None))
-#if QT_CONFIG(shortcut)
+# if QT_CONFIG(shortcut)
         self.action_Snapshot.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+P", None))
 #endif // QT_CONFIG(shortcut)
         self.action_Undo.setText(QCoreApplication.translate("MainWindow", u"&Undo", None))
-#if QT_CONFIG(shortcut)
+# if QT_CONFIG(shortcut)
         self.action_Undo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Z", None))
 #endif // QT_CONFIG(shortcut)
         self.action_Redo.setText(QCoreApplication.translate("MainWindow", u"&Redo", None))
-#if QT_CONFIG(shortcut)
+# if QT_CONFIG(shortcut)
         self.action_Redo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Shift+Z", None))
 #endif // QT_CONFIG(shortcut)
         self.action_About.setText(QCoreApplication.translate("MainWindow", u"&About", None))
@@ -203,4 +202,3 @@ class Ui_MainWindow(object):
         self.menu_View.setTitle(QCoreApplication.translate("MainWindow", u"&View", None))
         self.toolBar.setWindowTitle(QCoreApplication.translate("MainWindow", u"toolBar", None))
     # retranslateUi
-
