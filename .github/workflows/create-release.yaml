@@ -35,7 +35,7 @@ jobs:
           prerelease: ${{ steps.release_properties.outputs.pre_release }}
           body: ${{ steps.release_properties.outputs.body }}
   release-package-to-pypi:
-    if: github.repository == 'cmlibs/cmapps.neon'
+    if: github.repository == 'cmlibs/neon'
     runs-on: ubuntu-24.04
     name: Release package
     permissions:
